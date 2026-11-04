@@ -1,0 +1,151 @@
+---
+// src/pages/index.astro
+
+
+import 'C:/Windows/System32/proje/src/styles/global.css';
+
+// Kişisel ve Teknik Bilgilerinizi Buradan Düzenleyin
+const personalInfo = {
+  name: "SÜLEYMAN DOĞAN",
+  title: "ELEKTRİK ELEKTRONİK MÜHENDİSİ",
+  about: "Elektrik dağıtım  (1kV-36kV arası sistemler) uzmanlık alanım, araştırmayı ve yeni şeyler öğrenmeyi çok severim ",
+  email: "suleyman.dogan.hty@gmail.com",
+  github: "#",
+  linkedin: "#",
+  cvPath: "#", // public/cv.pdf konumuna dosyanızı koyabilirsiniz
+};
+
+const skills = ["AUTOCAD", "EXCEL", "Astro", "Node.js", "C#", "Tailwind CSS", "PostgreSQL", "Git"];
+
+const projects = [
+  {
+    title: "VBA Raporlama ve veri görselleştirme aracı",
+    description: "Sensör verilerini csv uzantılı dosyadan xlsx formatına dönüştürme ve raporlama aracı",
+    tags: ["VBA", "Excel", "HVAC",],
+    githubUrl: "https://github.com/username/project-one",
+    liveUrl: "https://project-one.demo.com",
+  },
+  {
+    title: "Elekronik Müzik Sentezleyici Synth",
+    description: "Atmega328P 8 bit mikrodenetleyici üzerinde çalışan stilofon benzeri müzik aleti. DDS metodu kullanarak yaptım.",
+    tags: ["ATMEGA328P", "Register", "Direct Digital Synthesis","DSP"],
+    githubUrl: "https://github.com/username/project-two",
+    liveUrl: null, // Canlı demo yoksa null bırakabilirsiniz
+  },
+  {
+    title: "Elektronik nabız ölçer",
+    description: "Parmak uçlarındaki kılcal damarlardaki kan akışına göre nabız ve kandaki çözünmüş oksijen miktarını ölçen bir cihaz",
+    tags: ["Arduino", "Sensor", "SPO2"],
+    githubUrl: "https://github.com/username/project-two",
+    liveUrl: null, // Canlı demo yoksa null bırakabilirsiniz
+  },
+];
+---
+
+<html lang="tr" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{personalInfo.name} | {personalInfo.title}</title>
+  </head>
+  
+  <body class="bg-slate-950 text-slate-100 antialiased min-h-screen selection:bg-indigo-500 selection:text-white">
+    <div class="max-w-3xl mx-auto px-6 py-16 flex flex-col justify-between min-h-screen">
+      
+      <main class="space-y-16">
+        <!-- 1. HERO / GİRİŞ ALANI -->
+        <section class="space-y-4">
+          <div class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+            Yeni Fırsatlara Açık
+          </div>
+          <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+            {personalInfo.name}
+          </h1>
+          <h2 class="text-xl font-medium text-slate-400">
+            {personalInfo.title}
+          </h2>
+          <p class="text-slate-300 leading-relaxed max-w-xl text-base sm:text-lg">
+            {personalInfo.about}
+          </p>
+          
+          <!-- İletişim Butonları -->
+          <div class="flex flex-wrap gap-3 pt-2">
+            <a
+              href={`mailto:${personalInfo.email}`}
+              class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm rounded-lg transition-colors shadow-lg shadow-indigo-600/20"
+            >
+              İletişime Geç
+            </a>
+            <a
+              href={personalInfo.cvPath}
+              target="_blank"
+              class="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 font-medium text-sm rounded-lg transition-colors"
+            >
+              CV İndir (PDF)
+            </a>
+          </div>
+        </section>
+
+        <!-- 2. TEKNOLOJİLER / YETKİNLİKLER -->
+        <section class="space-y-4">
+          <h3 class="text-xs uppercase tracking-wider text-slate-500 font-bold">Teknoloji & Araçlar</h3>
+          <div class="flex flex-wrap gap-2">
+            {skills.map((skill) => (
+              <span class="px-3 py-1 bg-slate-900 text-slate-300 border border-slate-800/80 rounded-md text-xs font-mono">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        <!-- 3. ÖNE ÇIKAN PROJELER -->
+        <section class="space-y-6">
+          <h3 class="text-xs uppercase tracking-wider text-slate-500 font-bold">Öne Çıkan Projeler</h3>
+          <div class="grid gap-6">
+            {projects.map((project) => (
+              <div class="p-6 bg-slate-900/50 border border-slate-800/80 rounded-xl space-y-4 hover:border-slate-700 transition-colors">
+                <div class="space-y-1">
+                  <h4 class="text-lg font-semibold text-white">{project.title}</h4>
+                  <p class="text-sm text-slate-400 leading-relaxed">{project.description}</p>
+                </div>
+                
+                <div class="flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span class="text-[11px] font-mono text-indigo-400 bg-indigo-950/40 px-2 py-0.5 rounded border border-indigo-900/30">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div class="flex items-center gap-4 text-xs font-medium pt-2">
+                  {project.githubUrl && (
+                    <a href={project.githubUrl} target="_blank" rel="noreferrer" class="text-slate-300 hover:text-indigo-400 transition-colors flex items-center gap-1">
+                      GitHub &rarr;
+                    </a>
+                  )}
+                  {project.liveUrl && (
+                    <a href={project.liveUrl} target="_blank" rel="noreferrer" class="text-slate-300 hover:text-indigo-400 transition-colors flex items-center gap-1">
+                      Canlı Demo &rarr;
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </main>
+
+      <!-- 4. FOOTER / ALT BİLGİ -->
+      <footer class="pt-16 mt-16 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <p>&copy; {new Date().getFullYear()} {personalInfo.name}. Tüm hakları saklıdır.</p>
+        <div class="flex items-center gap-4">
+          <a href={personalInfo.github} target="_blank" class="hover:text-slate-300 transition-colors">GitHub</a>
+          <a href={personalInfo.linkedin} target="_blank" class="hover:text-slate-300 transition-colors">LinkedIn</a>
+          <a href={`mailto:${personalInfo.email}`} class="hover:text-slate-300 transition-colors">E-posta</a>
+        </div>
+      </footer>
+
+    </div>
+  </body>
+</html>

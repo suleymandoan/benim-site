@@ -7,6 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
 
  site: 'https://suleymandoan.github.io/benim-site/',
+ base: '/Distro',
   
   vite: {
     plugins: [tailwindcss()]
